@@ -12,7 +12,7 @@ from matplotlib import rc
 
 # pip install pyqt5
 
-from PyQt5.QtWidgets import QApplication, QSizePolicy, QWidget, QMainWindow, QMenu, QHBoxLayout, QTableView, QSlider, QVBoxLayout, QPushButton, QFormLayout, QLabel, QTableWidget, QTableWidgetItem, QFrame, QAbstractItemView
+from PyQt5.QtWidgets import QApplication, QSizePolicy, QWidget, QMainWindow, QMenu, QHBoxLayout, QTableView, QSlider, QVBoxLayout, QPushButton, QFormLayout, QLabel, QTableWidget, QTableWidgetItem, QFrame, QAbstractItemView, QHeaderView
 from PyQt5.QtCore import Qt, QSize, QAbstractTableModel
 from PyQt5.QtGui import QFont, QFontDatabase
 from PyQt5 import QtCore
@@ -283,7 +283,7 @@ class ApplicationWindow(QMainWindow):
         # self.menuBar().addMenu(self.file_menu)
 
         self.main_widget = QWidget()
-        self.setFixedSize(QSize(1000, 700))
+        self.setFixedSize(QSize(1100, 720))
 
         layout = QVBoxLayout(self.main_widget)
         
@@ -335,6 +335,11 @@ class ApplicationWindow(QMainWindow):
         self.table = QTableView()
         self.table.setModel(model)
 
+        header = self.table.horizontalHeader()       
+        header.setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
+        header.setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.Stretch)
+
         self.table.setSelectionMode(QAbstractItemView.NoSelection)
         self.table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.table.setFont(QFont("Serif", 15))
@@ -356,8 +361,8 @@ class ApplicationWindow(QMainWindow):
         inner2.addWidget(self.lsqfitButton)
         inner2.addWidget(self.clearButton)
 
-        layout.addLayout(inner1, 3)
-        layout.addLayout(inner2, 3)
+        layout.addLayout(inner1, 4)
+        layout.addLayout(inner2, 4)
         layout.addWidget(spacer)
         layout.addLayout(self.infoLayout, 1)
 
